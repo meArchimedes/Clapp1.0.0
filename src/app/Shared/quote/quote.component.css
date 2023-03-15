@@ -1,0 +1,14 @@
+*{
+    text-align: center;
+background-image: url('././../dust-pan-broom.jpg');
+}
+Label{
+    text-align: center;
+    font-weight: bold;
+    font-size: 50;
+    overflow: visible;
+    font-family: 'Lucida Sans Unicode', Geneva, Verdana;
+}
+.quote{
+    font-size: 24;
+}

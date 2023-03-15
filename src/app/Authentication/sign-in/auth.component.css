@@ -1,0 +1,43 @@
+* {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+ActionBar {
+  background: #f6f1f171;
+}
+TextField{
+  size: 65;
+  height: 65;
+}
+#siBtn,
+TextField,
+.siGgl {
+  margin-left: 50;
+  margin-right: 50;
+}
+#stk1 {
+  margin-top: 30%;
+}
+#siBtn {
+  background: rgb(49, 116, 234);
+  font-weight: bold;
+  font-size: large;
+}
+#forgotBtn {
+  margin-left: 50;
+  margin-right: 55;
+  background: rgb(37, 201, 116);
+  font-size: 8;
+  font-weight: bold;
+}
+.siGgl{
+    background: #efeded;
+    margin: 50;
+}
+#suBtn {
+  margin-right: 45;
+  background: rgb(103, 231, 152);
+  font-size: 12;
+}

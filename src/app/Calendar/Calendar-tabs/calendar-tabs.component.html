@@ -1,0 +1,21 @@
+<TabView
+  androidTabsPosition="bottom"
+  androidSelectedTabHighlightColor="rgb(16, 99, 171)"
+  selectedTabTextColor="rgb(16, 99, 210)"
+>
+  <!-- <action-bar title="Clapp Schedule"></action-bar> -->
+  <StackLayout *tabItem="{ title: 'Today', iconSource: 'res://today1' }">
+    <page-router-outlet name="today"> </page-router-outlet>
+  </StackLayout>
+  <StackLayout
+    *tabItem="{
+      title: 'This Week',
+      iconSource: 'res://week1',
+      iconSize: '20,20'
+    }"
+  >
+    <page-router-outlet name="thisWeek"> </page-router-outlet
+  ></StackLayout>
+</TabView>
+<!-- selectedIndex="0"
+  (selectedIndexChanged)="onSelectedIndexChanged($event)" -->
