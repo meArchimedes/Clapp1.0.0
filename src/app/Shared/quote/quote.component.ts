@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'quote',
   templateUrl: 'quote.component.html',
-  styleUrls: ['quote.component.css'],
+  styleUrls: ['quote.component.scss'],
   moduleId: module.id
 })
 

@@ -4,7 +4,7 @@ import { ModalDialogParams } from "@nativescript/angular";
 @Component({
   selector: "session-modal",
   templateUrl: "session-modal.component.html",
-  styleUrls: ["session-modal.component.scss","session-modal.component.css"],
+  styleUrls: ["session-modal.component.scss"],
   moduleId: module.id,
 })
 export class SessionModalComponent implements OnInit {

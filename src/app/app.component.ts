@@ -15,7 +15,7 @@ import { UIService } from "./services/ui.service";
 @Component({
   selector: "ns-app",
   templateUrl: "./app.component.html",
-  styleUrls: ["_app.common.scss", "app.component.css"],
+  styleUrls: ["_app.common.scss"],
   moduleId: module.id,
 })
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {

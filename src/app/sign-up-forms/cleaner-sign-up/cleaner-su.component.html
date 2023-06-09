@@ -1,20 +1,59 @@
-<action-bar title="Cleaner Sign Up" [hasMenu]="false"></action-bar>
-<quote></quote>
-<ScrollView height="100%">
-<StackLayout justifyContent="space-between"  class="form">
-  <StackLayout class="input-field">
-    <Label text="First Name:" class="label" text="First Name"></Label>
-    <TextField class="input" hint="John"> </TextField> </StackLayout
-  ><StackLayout>
-    <Label text="Last Name:" class="label"></Label>
-    <TextField class="input" hint="Doe"> </TextField>
+<ActionBar class="action-bar" title="Cleaner Sign Up"></ActionBar>
+<ScrollView class="scroll-view">
+  <StackLayout class="form-container">
+    <StackLayout class="form-field">
+      <Label class="form-label" text="Name"></Label>
+      <TextField class="form-input" [(ngModel)]="name" required></TextField>
+    </StackLayout>
+
+    <StackLayout class="form-field">
+      <Label class="form-label" text="Password"></Label>
+      <TextField class="form-input" secure="true" [(ngModel)]="password" required></TextField>
+    </StackLayout>
+
+    <StackLayout class="form-field">
+      <Label class="form-label" text="Confirm Password"></Label>
+      <TextField class="form-input" secure="true" [(ngModel)]="password" required></TextField>
+    </StackLayout>
+
+    <StackLayout class="form-field">
+      <Label class="form-label" text="Address"></Label>
+      <TextField class="form-input" secure="true" [(ngModel)]="address" required></TextField>
+    </StackLayout>
+
+    <StackLayout class="form-field">
+      <Label class="form-label" text="ID"></Label>
+      <TextField class="form-input" [(ngModel)]="id" required></TextField>
+    </StackLayout>
+
+    <StackLayout class="form-field">
+      <Label class="form-label" text="Email Address"></Label>
+      <TextField class="form-input" [(ngModel)]="email" required></TextField>
+    </StackLayout>
+
+    <StackLayout class="form-field">
+      <Label class="form-label" text="Address"></Label>
+      <TextField class="form-input" [(ngModel)]="address" required></TextField>
+    </StackLayout>
+
+    <StackLayout class="form-field">
+
+      <ListPicker [items]="dropdownOptions" [(ngModel)]="selectedOption"></ListPicker>
+
+    </StackLayout>
+    <StackLayout class="form-field">
+      <Label class="form-label" text="Work Permit"></Label>
+      <Button class="form-button" text="Select File" (tap)="onSelectFile()"></Button>
+      <Label *ngIf="selectedFile" class="form-file-name" [text]="selectedFile.name"></Label>
+    </StackLayout>
+
+
+    <StackLayout class="form-field">
+      <Label class="form-label" text="Proof of ID"></Label>
+      <Button class="form-button" text="Upload Proof of ID" (tap)="onSelectFile()"></Button>
+      <Label *ngIf="proofOfIdFile" class="form-file-name" text="{{ proofOfIdFile.name }}"></Label>
+    </StackLayout>
+
+    <Button class="signup-button" text="Sign Up" (tap)="signUp()"></Button>
   </StackLayout>
-  <StackLayout>
-    <Label class="label" text="Address:"></Label>
-    <TextField class="input" hint="Ex. 1 Main st. New York," returnKeyType="done">
-    </TextField>
-    <DropDown name="Gender"></DropDown>
-  </StackLayout>
-  <Button class="btn" text="Next"></Button>
-</StackLayout>
 </ScrollView>

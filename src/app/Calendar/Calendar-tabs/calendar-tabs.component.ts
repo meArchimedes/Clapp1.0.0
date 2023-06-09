@@ -7,7 +7,7 @@ import { Page  } from "@nativescript/core";
 @Component({
   selector: "calendar-tabs",
   templateUrl: "calendar-tabs.component.html",
-  styleUrls: ["_calendar-tabs.component.common.scss", "calendar-tabs.component.css"],
+  styleUrls: ["_calendar-tabs.component.common.scss"],
   moduleId: module.id,
 })
 export class CalendarTabsComponent implements OnInit {

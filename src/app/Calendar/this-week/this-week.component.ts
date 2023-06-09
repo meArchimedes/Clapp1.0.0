@@ -12,7 +12,7 @@ import { SessionModalComponent } from "../session-modal/session-modal.component"
 @Component({
   selector: "this-week",
   templateUrl: "this-week.component.html",
-  styleUrls: ["_this-week.common.scss", "this-week.component.css"],
+  styleUrls: ["_this-week.common.scss"],
   moduleId: module.id,
 })
 export class ThisWeekComponent implements OnInit {

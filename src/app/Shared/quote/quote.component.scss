@@ -1,14 +1,16 @@
-*{
+* {
     text-align: center;
-background-image: url('././../dust-pan-broom.jpg');
-}
-Label{
+    background-image: url('././../dust-pan-broom.jpg');
+  }
+
+  Label {
     text-align: center;
     font-weight: bold;
-    font-size: 50;
+    font-size: 50px;
     overflow: visible;
     font-family: 'Lucida Sans Unicode', Geneva, Verdana;
-}
-.quote{
-    font-size: 24;
-}
+  }
+
+  .quote {
+    font-size: 24px;
+  }
