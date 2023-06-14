@@ -1,12 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { RouterExtensions } from "@nativescript/angular";
 import { File, knownFolders, path } from "@nativescript/core/file-system";
 import { NativeScriptFormsModule } from "@nativescript/angular";
 import { registerElement } from "@nativescript/angular";
-import { ListPicker } from "@nativescript/core";
-import { Http } from "@nativescript/core";
-import { openFile } from "@nativescript/core/utils";
-import { HandleFile } from "nativescript-handle-file";
+import { ScrollView } from "tns-core-modules";
+import { TextField } from "@nativescript/core";
+import { GooglePlacesAutocomplete } from "nativescript-google-places-autocomplete";
 import * as FilePicker from "@prabudevarrajan/filepicker";
 // import * as FilePicker  from 'nativescript-plugin-filepicker';
 
@@ -18,6 +17,8 @@ import * as FilePicker from "@prabudevarrajan/filepicker";
   moduleId: module.id,
 })
 export class CleanerSignUpComponent implements OnInit {
+  @ViewChild("scrollView", { static: true }) scrollView: ScrollView;
+  placesAutocomplete: any;
   name: string;
   id: string;
   workPermitFile: any;
@@ -26,17 +27,26 @@ export class CleanerSignUpComponent implements OnInit {
   gender: string;
   email: string;
   password: string;
+  confirmedPassword: string = ""
+  isSignUpEnabled: boolean = false;
 
   dropdownOptions: Array<string> = ["Female", "Male", "Rather not say"];
   selectedOption: string;
   selectedFile: File | null;
 
-  // onFileSelected(files: FileList): void {
-  //   this.selectedFile = files.item(0);
-  // }
-
-  constructor(private router: RouterExtensions) {}
-  ngOnInit() {}
+  constructor(
+    private router: RouterExtensions,
+    private elementRef: ElementRef
+  ) {}
+  ngOnInit() {
+    this.onSignUpEnabled();
+    this.placesAutocomplete = new GooglePlacesAutocomplete(
+      "AIzaSyArDTr6RHhG1z3AZxR8uQCKem7eXbXn-ow"
+    );
+  }
+  onFocus() {
+    this.scrollView.scrollToVerticalOffset(100, false);
+  }
   signUp() {
     // Handle the sign-up logic here
     // You can access the form values stored in the component properties (e.g., this.name, this.email)
@@ -54,8 +64,35 @@ export class CleanerSignUpComponent implements OnInit {
       // Additional logic...
     }
   }
-  onSignUpEnabled() {}
+  onSignUpEnabled() {
+    if (
+      this.name !== "" &&
+      this.email !== "" &&
+      this.workPermitFile !== "" &&
+      this.proofOfIdFile !== "" &&
+      this.address !== "" &&
+      this.gender !== "" &&
+      this.password !== ""
+    ) {
+      this.isSignUpEnabled = true;
+    } else {
+      this.isSignUpEnabled = false;
+    }
+  }
+  onAddressInputChange(args) {
+    let textField = <TextField>args.object;
+    console.log(textField.text);
 
+    this.placesAutocomplete.search(textField.text).then(
+      (places: any) => {
+        console.log(places);
+        // place predictions list
+      },
+      error => {
+        throw error;
+      }
+    );
+  }
   onSelectFile() {
     let context = FilePicker.create({
       mode: "single",
