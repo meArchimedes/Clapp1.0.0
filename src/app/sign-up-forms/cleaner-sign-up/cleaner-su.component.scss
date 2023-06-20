@@ -12,7 +12,10 @@
 ScrollView {
   max-height: 100vh;
 }
-
+ListView{
+  border-color: black;
+  border-style: solid;
+}
 // .action-bar {
 //   background-color: white;
 //   color: $primary;

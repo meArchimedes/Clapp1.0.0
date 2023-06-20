@@ -1,147 +1,129 @@
 <ActionBar title="Cleaner Sign Up"></ActionBar>
 <Label text="A clean place is a safe place."></Label>
 <!-- <ScrollView class="scroll-view"> -->
-    <StackLayout class="form-field">
-      <Label class="form-label" text="Address"></Label>
-      <TextField
-        hint="1234 Ave. A, 1234, NY"
-        id="address"
-        [text] = 'name'
-        returnKeyType="done"
-        (returnPress)="onAddressInputChange($event)"
-        class="form-input"
-        [(ngModel)]="address"
-        required
-      ></TextField>
-      <!-- <ListView
-  items="{{ titlesArray }}"
-  loaded="{{ onListViewLoaded }}"
-  itemTap="onItemTap"
-  loadMoreItems="onLoadMoreItems"
+<Label class="form-label" text="Address"></Label>
+<TextField
+  hint="1234 Ave. A, 1234, NY"
+  id="address"
+  [text]="name"
+  returnKeyType="done"
+  (returnPress)="onAddressInputChange($event)"
+  class="form-input"
+  [(ngModel)]="address"
+  required
+></TextField>
+<ListView
+  height="150"
+  [items]="placesArray"
+  (itemTap)="onItemTap($event)"
   separatorColor="orangered"
   rowHeight="50"
   class="list-group"
   id="listView"
+  row="2"
 >
-  <ListView.itemTemplate>
-    The item template can only have a single root view container (e.g. GriLayout, StackLayout, etc.) 
+  <ng-template let-item="item">
     <StackLayout class="list-group-item">
-      <Label text="{{ title || 'Downloading...' }}" textWrap="true" class="title" />
+      <Label [text]="item" textWrap="true" class="title"></Label>
     </StackLayout>
-  </ListView.itemTemplate>
+  </ng-template>
 </ListView>
-   <RadAutoCompleteTextView
-  class="form-input"
-  [(ngModel)]="address"
-  suggestionView="dropdown"
-  (tokenAdded)="onAddressInputChange($event)"
-  (tokenRemoved)="onAddressInputChange($event)"
-  displayMode="plain"
-  [items]="autocompleteResults">
-  <SuggestionView tkAutoCompleteSuggestionView>
-    <ng-template tkSuggestionItemTemplate let-item="item">
-      <StackLayout>
-        <Label [text]="item.description"></Label>
-      </StackLayout>
-    </ng-template>
-  </SuggestionView>
-</RadAutoCompleteTextView> -->
 
-      <!-- <AddressPredictionsList></AddressPredictionsList> -->
-     <StackLayout class="form-container">
- </StackLayout>
-    <StackLayout class="form-field">
-      <Label class="form-label" text="Name" [ngClass]=""></Label>
-      <TextField
-        class="form-input"
-        [(ngModel="binding"
-        )]
-        returnKeyType="next"
-        required
-      ></TextField>
-    </StackLayout>
-
-    <StackLayout class="form-field">
-      <Label class="form-label" text="Password"></Label>
-      <TextField
-        class="form-input"
-        secure="true"
-        [(ngModel)]="password"
-        required
-      ></TextField>
-    </StackLayout>
-
-    <StackLayout class="form-field">
-      <Label class="form-label" text="Confirm Password"></Label>
-      <TextField
-        class="form-input"
-        secure="true"
-        [(ngModel)]="password"
-        ngModel
-        required
-      ></TextField>
-    </StackLayout>
-
-    <StackLayout class="form-field">
-      <Label class="form-label" text="ID"></Label>
-      <TextField class="form-input" [(ngModel)]="id" required></TextField>
-    </StackLayout>
-
-    <StackLayout class="form-field">
-      <Label class="form-label" text="Email Address"></Label>
-      <TextField class="form-input" [(ngModel)]="email" required></TextField>
-    </StackLayout>
-
-    <StackLayout class="form-field">
-      <Label class="form-label" text="Address"></Label>
-      <TextField
-        class="form-input"
-        [(ngModel)]="address"
-        required
-        (textChange)="onAddressInputChange($event)"
-      ></TextField>
-    </StackLayout>
-
-    <StackLayout class="form-field">
-      <ListPicker
-        [items]="dropdownOptions"
-        [(ngModel)]="selectedOption"
-      ></ListPicker>
-    </StackLayout>
-    <StackLayout class="form-field">
-      <Label class="form-label" text="Work Permit"></Label>
-      <Button
-        class="form-button"
-        text="Select File"
-        (tap)="onSelectFile()"
-      ></Button>
-      <Label
-        *ngIf="selectedFile"
-        class="form-file-name"
-        [text]="selectedFile.name"
-      ></Label>
-    </StackLayout>
-
-    <StackLayout class="form-field">
-      <Label class="form-label" text="Proof of ID"></Label>
-      <Button
-        class="form-button"
-        text="Upload Proof of ID"
-        (tap)="onSelectFile()"
-      ></Button>
-      <Label
-        *ngIf="proofOfIdFile"
-        class="form-file-name"
-        text="{{ proofOfIdFile.name }}"
-      ></Label>
-    </StackLayout>
-
-    <Button
-      class="signup-button"
-      text="Sign Up"
-      (tap)="signUp()"
-      [isEnabled]="isSignUpEnabled"
-      [ngStyle]="{ 'background-color': isSignUpEnabled ? 'blue' : 'gray' }"
-    ></Button>
+<StackLayout class="form-field">
+  <!-- <AddressPredictionsList></AddressPredictionsList> -->
+  <StackLayout class="form-container"> </StackLayout>
+  <StackLayout class="form-field">
+    <Label class="form-label" text="Name" [ngClass]=""></Label>
+    <TextField
+      class="form-input"
+      [(ngModel="binding"
+      )]
+      returnKeyType="next"
+      required
+    ></TextField>
   </StackLayout>
+
+  <StackLayout class="form-field">
+    <Label class="form-label" text="Password"></Label>
+    <TextField
+      class="form-input"
+      secure="true"
+      [(ngModel)]="password"
+      required
+    ></TextField>
+  </StackLayout>
+
+  <StackLayout class="form-field">
+    <Label class="form-label" text="Confirm Password"></Label>
+    <TextField
+      class="form-input"
+      secure="true"
+      [(ngModel)]="password"
+      ngModel
+      required
+    ></TextField>
+  </StackLayout>
+
+  <StackLayout class="form-field">
+    <Label class="form-label" text="ID"></Label>
+    <TextField class="form-input" [(ngModel)]="id" required></TextField>
+  </StackLayout>
+
+  <StackLayout class="form-field">
+    <Label class="form-label" text="Email Address"></Label>
+    <TextField class="form-input" [(ngModel)]="email" required></TextField>
+  </StackLayout>
+
+  <StackLayout class="form-field">
+    <Label class="form-label" text="Address"></Label>
+    <TextField
+      class="form-input"
+      [(ngModel)]="address"
+      required
+      (textChange)="onAddressInputChange($event)"
+    ></TextField>
+  </StackLayout>
+
+  <StackLayout class="form-field">
+    <ListPicker
+      [items]="genderOptions"
+      [(ngModel)]="selectedOption"
+    ></ListPicker>
+  </StackLayout>
+  <StackLayout class="form-field">
+    <Label class="form-label" text="Work Permit"></Label>
+    <Button
+      class="form-button"
+      text="Select File"
+      (tap)="onSelectFile()"
+    ></Button>
+    <Label
+      *ngIf="selectedFile"
+      class="form-file-name"
+      [text]="selectedFile.name"
+    ></Label>
+  </StackLayout>
+
+  <StackLayout class="form-field">
+    <Label class="form-label" text="Proof of ID"></Label>
+    <Button
+      class="form-button"
+      text="Upload Proof of ID"
+      (tap)="onSelectFile()"
+    ></Button>
+    <Label
+      *ngIf="proofOfIdFile"
+      class="form-file-name"
+      text="{{ proofOfIdFile.name }}"
+    ></Label>
+  </StackLayout>
+
+  <Button
+    class="signup-button"
+    text="Sign Up"
+    (tap)="signUp()"
+    [isEnabled]="isSignUpEnabled"
+    [ngStyle]="{ 'background-color': isSignUpEnabled ? 'blue' : 'gray' }"
+  ></Button>
+</StackLayout>
 <!-- </ScrollView> -->

@@ -3,13 +3,21 @@ import { RouterExtensions } from "@nativescript/angular";
 import { File, knownFolders, path } from "@nativescript/core/file-system";
 import { NativeScriptFormsModule } from "@nativescript/angular";
 import { registerElement } from "@nativescript/angular";
-import { ListPicker, TextField } from "@nativescript/core";
+import {
+  EventData,
+  Label,
+  ListPicker,
+  ObservableArray,
+  Page,
+  TextField,
+  fromObject,
+} from "@nativescript/core";
 import { HttpClient } from "@angular/common/http";
 import { Http, Observable } from "@nativescript/core";
 import { openFile } from "@nativescript/core/utils";
-//import { GooglePlacesAutocomplete } from "nativescript-google-places-autocomplete";
 import * as FilePicker from "@prabudevarrajan/filepicker";
 import { GooglePlacesAutocomplete } from "nativescript-google-places-autocomplete";
+import { ItemEventData, ListView } from "tns-core-modules/ui/list-view";
 
 @Component({
   selector: "cleaner-su",
@@ -18,20 +26,20 @@ import { GooglePlacesAutocomplete } from "nativescript-google-places-autocomplet
   moduleId: module.id,
 })
 export class CleanerSignUpComponent implements OnInit {
-  placesAutocomplete: any;
-  autocompleteResults: any[] = [];
+  placesArray: ObservableArray<GooglePlacesAutocomplete>;
+  placesAutocomplete: GooglePlacesAutocomplete;
+  autocompleteResults: ObservableArray<string> = new ObservableArray<string>();
   isSignUpEnabled: boolean = false;
   name: string = "";
   id: string = "";
   workPermitFile: any = null;
   proofOfIdFile: any;
-  address: string = "";
+  address: any;
   gender: string = "";
   email: string = "";
   password: string = "";
   confirmedPassword: string = "";
-
-  dropdownOptions: Array<string> = ["Female", "Male", "Rather not say"];
+  genderOptions: Array<string> = ["Female", "Male", "Rather not say"];
   selectedOption: string;
   selectedFile: File | null;
 
@@ -45,6 +53,36 @@ export class CleanerSignUpComponent implements OnInit {
     this.placesAutocomplete = new GooglePlacesAutocomplete(
       "AIzaSyArDTr6RHhG1z3AZxR8uQCKem7eXbXn-ow"
     );
+    //   const ObservableArray = require("tns-core-modules/data/observable-array");
+    //   this.placesArray = new ObservableArray({
+    //       // Setting the listview binding source
+    //       places: [
+    //           { title: "The Da Vinci Code" },
+    //           { title: "Harry Potter and the Chamber of Secrets" },
+    //           { title: "Hawaii" },
+    //           { title: "Afghanistan" },
+    //           { title: "Goodnight Moon" },
+    //           { title: "The Hobbit" }
+    //       ]
+    //   });
+    //   const listView = new ListView();
+    //   listView.className = "list-group";
+    //   listView.items = this.placesArray;
+    //   listView.on(ListView.itemLoadingEvent, (args: ItemEventData) =>{
+    //     if(!args.view){
+    //       args.view = new Label();
+    //       args.view.className = "list-group-item";
+    //     }
+    //     (<any>args.view).text = this.placesArray.getItem(args.index).title;
+    //   });
+    //   listView.on(ListView.itemTapEvent, (args: ItemEventData) => {
+    //     const tappedItemIndex = args.index;
+    //     const tappedItemView = args.view;
+    //     alert(`Index: ${tappedItemIndex} View: ${tappedItemView}`)
+    //         .then(() => {
+    //             console.log("Dialog closed!");
+    //         });
+    // });
   }
 
   signUp() {
@@ -63,13 +101,28 @@ export class CleanerSignUpComponent implements OnInit {
 
     this.placesAutocomplete.search(textField.text).then(
       (places: any) => {
-        console.log(places);
-        // place predictions list
+        // console.log(places);
+        const predictions = places.map((place: any) => place.description);
+        console.log(predictions);
+        const results = predictions.map((prediction: any) => prediction.description);
+        this.placesArray = new ObservableArray<GooglePlacesAutocomplete>(results);
       },
       (error) => {
         throw error;
       }
     );
+  }
+  onItemTap(args: ItemEventData) {
+    const selectedAddress = this.placesArray.getItem(args.index);
+    console.log("Selected Prediction:", selectedAddress);
+    this.address = selectedAddress;
+  }
+  onNavigatingTo(args: EventData) {
+    const page = <Page>args.object;
+    page.bindingContext = this.placesArray;
+  }
+  onListViewLoaded(args: EventData) {
+    const listView = <ListView>(<unknown>args.object);
   }
 
   uploadFile(): void {
