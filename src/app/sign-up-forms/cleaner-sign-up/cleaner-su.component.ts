@@ -3,6 +3,7 @@ import { RouterExtensions } from "@nativescript/angular";
 import { File, knownFolders, path } from "@nativescript/core/file-system";
 import { NativeScriptFormsModule } from "@nativescript/angular";
 import { registerElement } from "@nativescript/angular";
+import { ListViewComponent } from "../../Shared/list-view/list-view.component"
 import {
   EventData,
   Label,
@@ -28,6 +29,8 @@ import { ItemEventData, ListView } from "tns-core-modules/ui/list-view";
 export class CleanerSignUpComponent implements OnInit {
   placesArray: ObservableArray<GooglePlacesAutocomplete>;
   placesAutocomplete: GooglePlacesAutocomplete;
+  isListViewVisible: boolean = false;
+  displayListView = true;
   autocompleteResults: ObservableArray<string> = new ObservableArray<string>();
   isSignUpEnabled: boolean = false;
   name: string = "";
@@ -53,36 +56,6 @@ export class CleanerSignUpComponent implements OnInit {
     this.placesAutocomplete = new GooglePlacesAutocomplete(
       "AIzaSyArDTr6RHhG1z3AZxR8uQCKem7eXbXn-ow"
     );
-    //   const ObservableArray = require("tns-core-modules/data/observable-array");
-    //   this.placesArray = new ObservableArray({
-    //       // Setting the listview binding source
-    //       places: [
-    //           { title: "The Da Vinci Code" },
-    //           { title: "Harry Potter and the Chamber of Secrets" },
-    //           { title: "Hawaii" },
-    //           { title: "Afghanistan" },
-    //           { title: "Goodnight Moon" },
-    //           { title: "The Hobbit" }
-    //       ]
-    //   });
-    //   const listView = new ListView();
-    //   listView.className = "list-group";
-    //   listView.items = this.placesArray;
-    //   listView.on(ListView.itemLoadingEvent, (args: ItemEventData) =>{
-    //     if(!args.view){
-    //       args.view = new Label();
-    //       args.view.className = "list-group-item";
-    //     }
-    //     (<any>args.view).text = this.placesArray.getItem(args.index).title;
-    //   });
-    //   listView.on(ListView.itemTapEvent, (args: ItemEventData) => {
-    //     const tappedItemIndex = args.index;
-    //     const tappedItemView = args.view;
-    //     alert(`Index: ${tappedItemIndex} View: ${tappedItemView}`)
-    //         .then(() => {
-    //             console.log("Dialog closed!");
-    //         });
-    // });
   }
 
   signUp() {
@@ -97,15 +70,17 @@ export class CleanerSignUpComponent implements OnInit {
   }
   onAddressInputChange(args) {
     let textField = <TextField>args.object;
-    console.log(textField.text);
+    // console.log(textField.text);
 
     this.placesAutocomplete.search(textField.text).then(
       (places: any) => {
         // console.log(places);
+        this.isListViewVisible = places.length > 0 && this.displayListView;
+        this.displayListView = true;
         const predictions = places.map((place: any) => place.description);
-        console.log(predictions);
-        const results = predictions.map((prediction: any) => prediction.description);
-        this.placesArray = new ObservableArray<GooglePlacesAutocomplete>(results);
+        this.placesArray = new ObservableArray<GooglePlacesAutocomplete>(
+          predictions
+        );
       },
       (error) => {
         throw error;
@@ -113,17 +88,18 @@ export class CleanerSignUpComponent implements OnInit {
     );
   }
   onItemTap(args: ItemEventData) {
+    this.displayListView = false;
     const selectedAddress = this.placesArray.getItem(args.index);
-    console.log("Selected Prediction:", selectedAddress);
+    this.isListViewVisible = false;
     this.address = selectedAddress;
   }
-  onNavigatingTo(args: EventData) {
-    const page = <Page>args.object;
-    page.bindingContext = this.placesArray;
-  }
-  onListViewLoaded(args: EventData) {
-    const listView = <ListView>(<unknown>args.object);
-  }
+  // onNavigatingTo(args: EventData) {
+  //   const page = <Page>args.object;
+  //   page.bindingContext = this.placesArray;
+  // }
+  // onListViewLoaded(args: EventData) {
+  //   const listView = <ListView>(<unknown>args.object);
+  // }
 
   uploadFile(): void {
     // Perform the file upload logic here using this.selectedFile
