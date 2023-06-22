@@ -1,6 +1,6 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-import { NativeScriptModule } from "@nativescript/angular";
-import { NativeScriptFormsModule } from "@nativescript/angular";
+import { NativeScriptModule } from '@nativescript/angular';
+import { NativeScriptFormsModule } from '@nativescript/angular';
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { NewUserComponent } from "./Authentication/sign-up/new-user.component";
@@ -14,6 +14,7 @@ import { SessionModalComponent } from "./Calendar/session-modal/session-modal.co
 import { SharedModule } from "./Shared/shared.module"
 import { CalendarRoutingModule } from "./Calendar/calendar-modules/calendar-routing.module";
 import { CalActionsModule } from "./Calendar/calendar-actions/cal-actions.module";
+import { HttpClientModule } from "@angular/common/http";
 
 // import { firebase } from "@nativescript/firebase";
 
@@ -31,6 +32,7 @@ import { CalActionsModule } from "./Calendar/calendar-actions/cal-actions.module
     NativeScriptFormsModule,
     AppRoutingModule,
     NativeScriptUISideDrawerModule,
+    HttpClientModule,
     SharedModule,
     CalendarRoutingModule,
     ForgotPasswordModule,

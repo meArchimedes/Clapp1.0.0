@@ -12,7 +12,16 @@
 ScrollView {
   max-height: 100vh;
 }
-
+ListView{
+  border-color: black;
+  border-style: solid;
+}
+.address-input{
+  background-color: pink;
+}
+.list-group{
+  background-color: lightcoral;
+}
 // .action-bar {
 //   background-color: white;
 //   color: $primary;

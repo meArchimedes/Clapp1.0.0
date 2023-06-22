@@ -1,0 +1,18 @@
+<StackLayout>
+  <ListView
+    *ngIf="isListViewVisible"
+    height="150"
+    [items]="elements"
+    (itemTap)="onItemTap($event)"
+    separatorColor="orangered"
+    rowHeight="50"
+    class="list-group"
+    id="listView"
+  >
+    <ng-template let-item="item">
+      <StackLayout class="list-group-item">
+        <Label [text]="item" textWrap="true" class="title"></Label>
+      </StackLayout>
+    </ng-template>
+  </ListView>
+</StackLayout>

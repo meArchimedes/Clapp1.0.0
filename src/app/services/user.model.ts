@@ -1,8 +1,7 @@
-export class User {
-  email?: string;
-  password: string;
+import { Address } from "./address.model";
 
-  hasEmail() {
-    return this.email != '';
-  }
+export class User {
+  email: string;
+  password: string;
+  address: Address;
 }
