@@ -85,7 +85,11 @@
       text="Upload A Photo of Yourself"
       (tap)="onSelectFile()"
     ></Button>
-    <Label class="form-file-name" ></Label>
+    <Label
+      *ngIf="photoFile"
+      class="form-file-name"
+      text="{{ proofOfIdFile.name }}"
+    ></Label>
 
     <Button
       class="signup-button"

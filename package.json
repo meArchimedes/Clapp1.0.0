@@ -16,6 +16,7 @@
     "@nativescript/core": "^8.5.7",
     "@nativescript/theme": "~3.0.2",
     "@prabudevarrajan/filepicker": "^2.0.0",
+    "n7-google-places-autocomplete": "^1.0.11",
     "nativescript-google-login": "^1.4.0",
     "nativescript-google-places-autocomplete": "^1.0.3",
     "nativescript-localstorage": "^2.0.2",

@@ -30,13 +30,13 @@ export class CleanerSignUpComponent implements OnInit {
   placesAutocomplete: any;
   isListViewVisible: boolean = false;
   displayListView = false;
-  autocompleteResults: ObservableArray<GooglePlacesAutocomplete>;
+  autocompleteResults: ObservableArray<GooglePlacesAutocomplete> =
+    new ObservableArray<GooglePlacesAutocomplete>();
   isSignUpEnabled: boolean = false;
   name: string = "";
   id: string = "";
   workPermitFile: any = null;
   proofOfIdFile: any;
-  photoFile: File;
   address: any;
   gender: string = "";
   email: string = "";

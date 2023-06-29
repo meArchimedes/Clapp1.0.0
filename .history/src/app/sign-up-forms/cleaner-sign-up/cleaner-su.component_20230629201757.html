@@ -82,10 +82,14 @@
     <Label class="form-label" text="Photo"></Label>
     <Button
       class="form-button"
-      text="Upload A Photo of Yourself"
+      text="Upload A "
       (tap)="onSelectFile()"
     ></Button>
-    <Label class="form-file-name" ></Label>
+    <Label
+      *ngIf="proofOfIdFile"
+      class="form-file-name"
+      text="{{ proofOfIdFile.name }}"
+    ></Label>
 
     <Button
       class="signup-button"

@@ -85,7 +85,10 @@
       text="Upload A Photo of Yourself"
       (tap)="onSelectFile()"
     ></Button>
-    <Label class="form-file-name" ></Label>
+    <Label
+      class="form-file-name"
+      text="{{ photoFile.name }}"
+    ></Label>
 
     <Button
       class="signup-button"

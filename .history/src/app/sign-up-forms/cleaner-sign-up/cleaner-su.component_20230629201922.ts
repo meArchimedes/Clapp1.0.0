@@ -36,7 +36,6 @@ export class CleanerSignUpComponent implements OnInit {
   id: string = "";
   workPermitFile: any = null;
   proofOfIdFile: any;
-  photoFile: File;
   address: any;
   gender: string = "";
   email: string = "";

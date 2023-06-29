@@ -26,17 +26,18 @@ import { ObservableArray } from "@nativescript/core/data/observable-array";
   moduleId: module.id,
 })
 export class CleanerSignUpComponent implements OnInit {
-  placesArray: ObservableArray<GooglePlacesAutocomplete>;
+  placesArray: ObservableArray<GooglePlacesAutocomplete> =
+    new ObservableArray<GooglePlacesAutocomplete>();
   placesAutocomplete: any;
   isListViewVisible: boolean = false;
   displayListView = false;
-  autocompleteResults: ObservableArray<GooglePlacesAutocomplete>;
+  autocompleteResults: ObservableArray<GooglePlacesAutocomplete> =
+    new ObservableArray<GooglePlacesAutocomplete>();
   isSignUpEnabled: boolean = false;
   name: string = "";
   id: string = "";
   workPermitFile: any = null;
   proofOfIdFile: any;
-  photoFile: File;
   address: any;
   gender: string = "";
   email: string = "";
