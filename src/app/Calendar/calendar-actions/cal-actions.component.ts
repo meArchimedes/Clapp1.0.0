@@ -4,7 +4,7 @@ import { ModalDialogParams } from "@nativescript/angular";
 @Component({
   selector: "cal-actions",
   templateUrl: "cal-actions.component.html",
-  styleUrls: ["cal-actions.component.scss", "cal-actions.component.css"],
+  styleUrls: ["cal-actions.component.scss"],
   moduleId: module.id,
 })
 export class CalActionsComponent implements OnInit {

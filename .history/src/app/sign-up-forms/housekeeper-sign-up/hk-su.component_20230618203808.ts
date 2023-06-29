@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'hk-su',
-  templateUrl: 'hk-su.component.html',
-  styleUrls: ['hk-su.component.scss'],
+  selector: 'client-su',
+  templateUrl: 'client-su.component.html',
+  styleUrls: ['client-su.component.scss'],
   moduleId: module.id
 })
 
