@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class ForgotPasswordComponent implements OnInit {
   http: any;
-  email: string;
+  email: any;
   constructor() { }
 
   ngOnInit() { }
@@ -20,7 +20,7 @@ export class ForgotPasswordComponent implements OnInit {
         // Handle success, such as displaying a confirmation message
       },
       (error) => {
-        console.error('User not registered:', error);
+        console.error('Error sending reset email:', error);
         // Handle error, such as displaying an error message
       }
     );

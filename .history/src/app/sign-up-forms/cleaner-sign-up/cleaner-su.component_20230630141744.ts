@@ -13,7 +13,7 @@ import {
   Http,
 } from "@nativescript/core";
 // import { HttpClient } from "@angular/common/http";
-import { openFile } from "@nativescript/core/utils";
+// import { openFile } from "@nativescript/core/utils";
 import * as FilePicker from "@prabudevarrajan/filepicker";
 import { GooglePlacesAutocomplete } from "n7-google-places-autocomplete";
 import { ItemEventData, ListView } from "@nativescript/core";
@@ -46,6 +46,9 @@ export class CleanerSignUpComponent implements OnInit {
   selectedOption: string;
   selectedFile: File | null;
 
+  // onFileSelected(files: FileList): void {
+  //   this.selectedFile = files.item(0);
+  // }
   constructor(private router: RouterExtensions) {}
   ngOnInit() {
     this.onSignUpEnabled();
@@ -85,10 +88,18 @@ export class CleanerSignUpComponent implements OnInit {
   }
   onItemTap(args: ItemEventData) {
     this.displayListView = false;
-    const selectedAddress = this.placesArray.getItem(args.index);
+    const selectedAddress = this.placesArray.getItem[args.index];
     this.isListViewVisible = false;
     this.address = selectedAddress;
   }
+  // onNavigatingTo(args: EventData) {
+  //   const page = <Page>args.object;
+  //   page.bindingContext = this.placesArray;
+  // }
+  // onListViewLoaded(args: EventData) {
+  //   const listView = <ListView>(<unknown>args.object);
+  // }
+
 
   onSignUpEnabled() {
     // Check if all required fields are filled
@@ -111,24 +122,24 @@ export class CleanerSignUpComponent implements OnInit {
   //   console.log("Selected Prediction:", selectedPrediction);
   //   this.address = selectedPrediction.description;
   // }
-  onSelectFile() {
 
+  onSelectFile() {
     let context = FilePicker.create({
       mode: "single",
       extensions: ["pdf", "jpg", "doc", "docx"],
     });
-    console.log(context);
-    context.authorize().then(function () {
+    context
+      .authorize()
+      .then(function () {
         return context.present();
-      }).then(function (selection) {
+      })
+      .then(function (selection) {
         selection.forEach(function (selected) {
-          console.log(selected);
           // process the selected file
         });
       })
       .catch(function (e) {
-        console.log(e);
+        // process error
       });
-
   }
 }

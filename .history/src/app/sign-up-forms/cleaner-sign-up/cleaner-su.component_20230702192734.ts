@@ -118,16 +118,20 @@ export class CleanerSignUpComponent implements OnInit {
       extensions: ["pdf", "jpg", "doc", "docx"],
     });
     console.log(context);
-    context.authorize().then(function () {
+    context
+      .authorize()
+      .then(function () {
+
         return context.present();
-      }).then(function (selection) {
+      })
+      .then(function (selection) {
         selection.forEach(function (selected) {
           console.log(selected);
           // process the selected file
         });
       })
       .catch(function (e) {
-        console.log(e);
+        // process error
       });
 
   }

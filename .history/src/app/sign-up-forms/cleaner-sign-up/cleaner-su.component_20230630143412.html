@@ -57,35 +57,34 @@
       [items]="genderOptions"
       [(ngModel)]="selectedOption"
     ></ListPicker>
-      <Label class="form-label" text="Work Permit"></Label>
-      <Button
-        class="form-button"
-        text="Select File"
-        (tap)="onSelectFile()"
-      ></Button>
-      <Label
-        *ngIf="selectedFile"
-        class="form-file-name"
-        [text]="selectedFile.name"
-      ></Label>
-      <Label class="form-label" text="Proof of ID"></Label>
-      <Button
-        class="form-button"
-        text="Upload Proof of ID"
-        (tap)="onSelectFile()"
-      ></Button>
-      <Label
-        *ngIf="proofOfIdFile"
-        class="form-file-name"
-        text="{{ proofOfIdFile.name }}"
-      ></Label>
-
-    <Label class="form-label" text="Photo"></Label>
+    <Label class="form-label" text="Work Permit"></Label>
+    <Button
+      class="form-button"
+      text="Select File"
+      (tap)="onSelectFile()"
+    ></Button>
+    <Label
+      *ngIf="selectedFile"
+      class="form-file-name"
+      [text]="selectedFile.name"
+    ></Label>
+    <Label class="form-label" text="Proof of ID"></Label>
+    <Button
+      class="form-button"
+      text="Upload Proof of ID"
+      (tap)="onSelectFile()"
+    ></Button>
+    <Label
+      *ngIf="proofOfIdFile"
+      class="form-file-name"
+      text="{{ proofOfIdFile.name }}"
+    ></Label>
+    <!-- <Label class="form-label" text="Photo"></Label>
     <Button
       class="form-button"
       text="Upload A Photo of Yourself"
       (tap)="onSelectFile()"
-    ></Button>
+    ></Button> -->
 
     <Button
       class="signup-button"

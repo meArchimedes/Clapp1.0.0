@@ -57,6 +57,7 @@
       [items]="genderOptions"
       [(ngModel)]="selectedOption"
     ></ListPicker>
+    <StackLayout class="form-field">
       <Label class="form-label" text="Work Permit"></Label>
       <Button
         class="form-button"
@@ -68,6 +69,8 @@
         class="form-file-name"
         [text]="selectedFile.name"
       ></Label>
+    </StackLayout>
+    <StackLayout class="form-field">
       <Label class="form-label" text="Proof of ID"></Label>
       <Button
         class="form-button"
@@ -79,6 +82,7 @@
         class="form-file-name"
         text="{{ proofOfIdFile.name }}"
       ></Label>
+    </StackLayout>
 
     <Label class="form-label" text="Photo"></Label>
     <Button

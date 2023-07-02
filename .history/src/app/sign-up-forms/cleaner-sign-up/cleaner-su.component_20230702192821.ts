@@ -119,15 +119,16 @@ export class CleanerSignUpComponent implements OnInit {
     });
     console.log(context);
     context.authorize().then(function () {
-        return context.present();
-      }).then(function (selection) {
+return context.present();
+      })
+      .then(function (selection) {
         selection.forEach(function (selected) {
           console.log(selected);
           // process the selected file
         });
       })
       .catch(function (e) {
-        console.log(e);
+        // process error
       });
 
   }

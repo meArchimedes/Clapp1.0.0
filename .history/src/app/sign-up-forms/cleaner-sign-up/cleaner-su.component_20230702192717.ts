@@ -117,17 +117,21 @@ export class CleanerSignUpComponent implements OnInit {
       mode: "single",
       extensions: ["pdf", "jpg", "doc", "docx"],
     });
-    console.log(context);
-    context.authorize().then(function () {
+    cn
+    context
+      .authorize()
+      .then(function () {
+
         return context.present();
-      }).then(function (selection) {
+      })
+      .then(function (selection) {
         selection.forEach(function (selected) {
           console.log(selected);
           // process the selected file
         });
       })
       .catch(function (e) {
-        console.log(e);
+        // process error
       });
 
   }

@@ -13,7 +13,7 @@ import {
   Http,
 } from "@nativescript/core";
 // import { HttpClient } from "@angular/common/http";
-import { openFile } from "@nativescript/core/utils";
+// import { openFile } from "@nativescript/core/utils";
 import * as FilePicker from "@prabudevarrajan/filepicker";
 import { GooglePlacesAutocomplete } from "n7-google-places-autocomplete";
 import { ItemEventData, ListView } from "@nativescript/core";
@@ -111,24 +111,25 @@ export class CleanerSignUpComponent implements OnInit {
   //   console.log("Selected Prediction:", selectedPrediction);
   //   this.address = selectedPrediction.description;
   // }
-  onSelectFile() {
 
+  onSelectFile() {
     let context = FilePicker.create({
       mode: "single",
       extensions: ["pdf", "jpg", "doc", "docx"],
     });
-    console.log(context);
-    context.authorize().then(function () {
+    context
+      .authorize()
+      .then(function () {
         return context.present();
-      }).then(function (selection) {
+        console.log("here");
+      })
+      .then(function (selection) {
         selection.forEach(function (selected) {
-          console.log(selected);
           // process the selected file
         });
       })
       .catch(function (e) {
-        console.log(e);
+        // process error
       });
-
   }
 }

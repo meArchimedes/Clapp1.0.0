@@ -127,7 +127,7 @@ export class CleanerSignUpComponent implements OnInit {
         });
       })
       .catch(function (e) {
-        console.log(e);
+        console.log(selected);
       });
 
   }
