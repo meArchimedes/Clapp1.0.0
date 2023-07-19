@@ -1,0 +1,93 @@
+@import "~@nativescript/theme/scss/core";
+@import "~@nativescript/theme/scss/variables";
+@import "../../app.common";
+* {
+  color: $primary;
+}
+.signup-button {
+  background-color: rgb(166, 159, 159);
+  color: white;
+  width: 35%;
+}
+ScrollView {
+  max-height: 100vh;
+}
+ListView{
+  border-color: black;
+  border-style: solid;
+}
+.warnLabel{
+  color: red;
+}
+// .address-input{
+//   background-color: pink;
+// }
+// .list-group{
+//   background-color: lightcoral;
+// }
+// .action-bar {
+//   background-color: white;
+//   color: $primary;
+//   font-family: $font-family-serif;
+
+//   Label {
+//     color: $primary;
+//     font-family: $font-family-serif;
+//   }
+// }
+
+// .scroll-view {
+//   background-color: $background-color-page;
+//   padding: 10;
+
+//   .form-container {
+//     margin: 10;
+
+//     .form-field {
+//       display: flex;
+//       flex-direction: row;
+//       align-items: center;
+//       margin-bottom: 10;
+
+//       .form-label {
+//         color: $primary;
+//         font-weight: bold;
+//         font-family: $font-family-serif;
+//         width: 30%;
+//         margin-left: 10;
+//       }
+
+//       .form-input {
+//         border-width: 2;
+//         border-color: $primary;
+//         width: 70%;
+//         height: 25;
+//         font-family: $font-family-serif;
+//         margin-left: 10;
+//       }
+
+//       .form-button {
+//         background-color: $primary;
+//         color: white;
+//         margin-left: 10;
+//       }
+
+//       .form-file-name {
+//         color: $primary;
+//         margin-left: 10;
+//       }
+//     }
+//   }
+
+//   .signup-button {
+//     background-color: gray;
+//     color: white;
+//     width: 50%;
+//     margin: 10 auto;
+//   }
+//   .signup-button:enabled {
+//     background-color: blue;
+//     color: white;
+//     cursor: pointer;
+//   }
+// }

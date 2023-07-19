@@ -1,0 +1,85 @@
+// @import '@nativescript/theme/css/core.css';
+// @import "~@nativescript/theme/core";
+// @import "./../../node_modules/nativescript-theme-core/scss/light";
+@import "./theme/colors";
+@import "~@nativescript/theme/blue";
+$btn-color: $primary;
+
+ActionBar {
+  background: $primary;
+  color: white;
+}
+
+.page-background {
+  background-image: url("~/app/Images/broom.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.drawer-container {
+  background-color: linear-gradient(rgb(15, 158, 151), rgb(12, 70, 228));
+  width: 40%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20;
+  background: rgb(55, 108, 255);
+}
+.drwr-btn {
+  width: 80%;
+  background-color: rgb(42, 215, 186);
+}
+// .btn {
+//   border-width: 1;
+//   border-color: #14c5ae;
+//   width: 70%;
+//   padding: 5 10;
+//   border-radius: 30%;
+//   margin: 5 0;
+// }
+StackLayout {
+  margin: 10%;
+  align-content: space-between;
+  flex-direction: column;
+}
+.form {
+  margin-top: 10%;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  .input-field {
+    .input {
+      border-bottom-width: 2;
+      border-color: $primary;
+      width: 60%;
+      height: 25;
+    }
+    .label {
+      color: $primary;
+      font-weight: bold;
+      font-family: "Oswald", "Oswald-Regular", "Oswald-Bold";
+    }
+  }
+}
+.warnLabel{
+  
+}
+.success-btn {
+  background: $success;
+  border-color: $success;
+  color: $white;
+}
+.fail-btn {
+  background: $fail;
+  border-color: $fail;
+  color: $white;
+}
+.h1 {
+  width: 100%;
+  font-weight: bold;
+  color: $primary;
+  font-family: "Oswald", "Oswald-Regular", "Oswald-Bold";
+}
+.fa {
+  font-family: "FontAwesome", "Font-Awesome";
+}
