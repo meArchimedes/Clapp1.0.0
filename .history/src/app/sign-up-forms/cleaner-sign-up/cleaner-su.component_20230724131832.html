@@ -1,0 +1,130 @@
+<ActionBar title="Cleaner Sign Up"></ActionBar>
+<quote></quote>
+<ScrollView class="scroll-view">
+  <StackLayout>
+    <Label class="form-label" text="Name" [ngClass]=""></Label>
+    <TextField
+      class="form-input"
+      returnKeyType="next"
+      [(ngModel)]="name"
+      autocapitalizationType="words"
+      (textChange)="onSignUpEnabled()"
+      required
+      (blur)="onTextFieldBlur()"
+      #nameField
+    ></TextField>
+    <create-password
+      (onPasswordValid)="getPassword($event)"
+      (onConfirmedPasswordValid)="getConfirmedPassword($event)"
+      (onPassMatch)="getPassMatch($event)"
+      (onPassValid)="getPassValid($event)"
+    ></create-password>
+    <Label class="form-label" text="Address"></Label>
+    <TextField
+      hint="1234 Ave. A, 1234, NY"
+      id="address"
+      returnKeyType="done"
+      (textChange)="onSignUpEnabled()"
+      (textChange)="onAddressInputChange($event)"
+      class="address-input"
+      [(ngModel)]="address"
+      required
+    ></TextField>
+    <ListView
+      *ngIf="isListViewVisible"
+      height="150"
+      [items]="placesArray"
+      (itemTap)="onItemTap($event)"
+      separatorColor="orangered"
+      rowHeight="50"
+      class="list-group"
+      id="listView"
+    >
+      <ng-template let-item="item">
+        <StackLayout class="list-group-item">
+          <Label [text]="item" textWrap="true" class="title"></Label>
+        </StackLayout>
+      </ng-template>
+    </ListView>
+    <Label class="form-label" text="Email Address"></Label>
+    <TextField
+      class="form-input"
+      [(ngModel)]="email"
+      type="email"
+      required
+      hint="Email Address"
+      autocapitalizationType="none"
+      required
+      [autocorrect]="false"
+      (textChange)="onSignUpEnabled()"
+      (textChange)="isEmailValid()"
+    >
+    </TextField>
+    <Label
+      *ngIf="!isEmailControlValid"
+      class="warnLabel"
+      text="Please enter a valid E-Mail"
+    ></Label>
+    <Button text="Select Age" (tap)="openAgeSelectionModal()"></Button>
+    <Label *ngIf="age" [text]="'Selected Age: ' + age"></Label>
+     <GridLayout rows="*, auto">
+      <ScrollView>
+        <StackLayout class="option-list">
+          <Label
+            *ngFor="let option of options"
+            [text]="option"
+            (tap)="selectOption(option)"
+          ></Label>
+        </StackLayout>
+      </ScrollView>
+
+      <Button
+        text="Confirm"
+        (tap)="confirmSelection()"
+        class="confirm-button"
+      ></Button>
+    </GridLayout>
+
+    <ListPicker [items]="genderOptions" [(ngModel)]="gender"></ListPicker>
+    <Label class="form-label" text="Work Permit"></Label>
+    <Button
+      class="form-button"
+      text="Select File"
+      type="file"
+      name="workPermitFile"
+      (tap)="onSelectFile('workPermitFile'); onSignUpEnabled()"
+    ></Button>
+    <Label
+      *ngIf="selectedFile"
+      class="form-file-name"
+      [text]="selectedFile.name"
+    ></Label>
+    <Label class="form-label" text="Proof of ID"></Label>
+    <Button
+      class="form-button"
+      text="Upload Proof of ID"
+      (tap)="onSelectFile('proofOfIdFile'); onSignUpEnabled()"
+    ></Button>
+    <Label
+      *ngIf="proofOfIdFile"
+      class="form-file-name"
+      text="{{ proofOfIdFile.name }}"
+    ></Label>
+
+    <Label class="form-label" text="Photo"></Label>
+    <Button
+      class="form-button"
+      text="Upload A Photo of Yourself"
+      (tap)="onSelectFile('photoFile'); onSignUpEnabled()"
+    ></Button>
+
+    <Button
+      class="signup-button"
+      text="Sign Up"
+      type="submit"
+      (tap)="signUp()"
+      [isEnabled]="isSignUpEnabled"
+      [ngStyle]="{ 'background-color': isSignUpEnabled ? 'blue' : 'gray' }"
+    ></Button>
+  </StackLayout>
+</ScrollView>

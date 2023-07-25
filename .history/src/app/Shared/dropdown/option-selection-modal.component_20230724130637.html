@@ -1,0 +1,9 @@
+<GridLayout rows="*, auto">
+  <ListView [items]="options">
+    <ng-template let-option="item">
+      <Label [text]="option" (tap)="selectOption(option)"></Label>
+    </ng-template>
+  </ListView>
+
+  <Button text="Confirm" (tap)="confirmSelection()" class="confirm-button"></Button>
+</GridLayout>

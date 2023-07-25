@@ -1,0 +1,44 @@
+@import "~@nativescript/theme/scss/core";
+@import "~@nativescript/theme/scss/variables";
+@import "../../app.common";
+* {
+  color: $primary;
+}
+.signup-button {
+  background-color: blue;
+  color: white;
+  width: 35%;
+}
+ScrollView {
+  max-height: 100vh;
+}
+ListView{
+  border-color: black;
+  border-style: solid;
+}
+.form-label {
+  margin-right: 40;
+}
+
+.age-input {
+  width: 40;
+  height: 40;
+  color: #000;
+  text-align: center;
+  border: 1px solid #000;
+  border-style: solid;
+  border-radius: 3;
+  margin-left: 30;
+}
+
+// .address-input{
+//   background-color: pink;
+// }
+// .list-group{
+//   background-color: lightcoral;
+// }
+// .action-bar {
+//   background-color: white;
+//   color: $primary;
+//   font-family: $font-family-serif;
+

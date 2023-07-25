@@ -1,0 +1,17 @@
+<GridLayout rows="*, auto">
+  <ScrollView>
+    <StackLayout class="option-list">
+      <Label
+        *ngFor="let option of options"
+        [text]="option"
+        (tap)="confirmSelection(option)"
+      ></Label>
+    </StackLayout>
+  </ScrollView>
+
+  <Button
+    text="Confirm"
+    (tap)="confirmSelection()"
+    class="confirm-button"
+  ></Button>
+</GridLayout>

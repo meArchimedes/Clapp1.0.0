@@ -1,0 +1,18 @@
+<!-- option-selection-modal.component.html -->
+<!-- <GridLayout rows="*, auto"> -->
+    <ListView
+      [items]="options"
+      (itemTap)="selectOption($event.index)"
+      class="option-list"
+    >
+      <ng-template let-option="item">
+        <Label [text]="option"></Label>
+      </ng-template>
+    </ListView>
+
+    <Button
+      text="Confirm"
+      (tap)="confirmSelection()"
+      class="confirm-button"
+    ></Button>
+  </GridLayout>
