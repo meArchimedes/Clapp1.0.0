@@ -4,7 +4,7 @@ export class Cleaner extends User{
   hourlyRate: number;
   perfectionism: number;
   efficiency: number;
-  age: number;
+  dob: any;
   gender: string;
   proofOfIdFile: File;
   workPermitFile: File;

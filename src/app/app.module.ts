@@ -19,7 +19,6 @@ import { HttpClientModule } from "@angular/common/http";
 import { CreatePasswordComponent } from "./Shared/create-password/create-password.component"
 import { ListViewComponent } from "./Shared/list-view/list-view.component"
 import { NativeScriptHttpClientModule } from "@nativescript/angular";
-import { DatePickerComponent } from "./Shared/date-picker/date-picker.component"
 // import { firebase } from "@nativescript/firebase";
 
 // firebase.init({
@@ -54,7 +53,6 @@ import { DatePickerComponent } from "./Shared/date-picker/date-picker.component"
     QuoteComponent,
     CreatePasswordComponent,
     ListViewComponent,
-    DatePickerComponent,
   ],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],

@@ -24,6 +24,7 @@ import {
   Http,
   ItemEventData,
   ListView,
+  DatePicker,
 } from "@nativescript/core";
 // import { HttpClient } from "@angular/common/http";
 import { openFile } from "@nativescript/core/utils";
@@ -36,7 +37,6 @@ import { Cleaner } from "../../services/cleaner.model";
 import { User } from "../../services/user.model";
 import { UserService } from "../../services/user.service";
 import { Address } from "~/app/services/address.model";
-import { DatePickerComponent } from "~/app/Shared/date-picker/date-picker.component";
 @Component({
   selector: "cleaner-su",
   templateUrl: "cleaner-su.component.html",
@@ -69,6 +69,19 @@ export class CleanerSignUpComponent implements OnInit {
   url: string = "https://clapp-36.firebaseio.com/";
   selectedFile: File | null;
   http: any;
+  currentDate = new Date();
+  minDateYear = this.currentDate.getFullYear() - 99;
+  minDate = new Date(
+    this.minDateYear,
+    this.currentDate.getMonth(),
+    this.currentDate.getDate()
+  );
+   maxDateYear = this.currentDate.getFullYear() - 18;
+   maxDate = new Date(
+     this.maxDateYear,
+     this.currentDate.getMonth(),
+     this.currentDate.getDate()
+   );
   @ViewChild("nameField", { static: false }) nameField: ElementRef<TextField>;
 
   constructor(
@@ -93,7 +106,7 @@ export class CleanerSignUpComponent implements OnInit {
       hourlyRate: 50,
       perfectionism: 0,
       efficiency: 0,
-      age: this.age,
+      dob: this.dob,
       gender: this.gender,
       proofOfIdFile: this.proofOfIdFile,
       workPermitFile: this.workPermitFile,
@@ -102,16 +115,14 @@ export class CleanerSignUpComponent implements OnInit {
       password: this.password,
       address: this.address,
     };
-    this.userService.createNewUser(newCleaner);
+    this.userService.createNewCleaner(newCleaner);
     this.router.navigate(["/calendars/calendar/calendar-tabs"]);
   }
 
-  confirmSelection(selectedOption?: string) {
-    if (selectedOption) {
-      this.age = selectedOption;
-    }
-  }
-
+  onDatePickerLoaded(args) {
+    const datePicker = args.object as DatePicker;
+    console.log("the min date:" +this.minDate, " :"+this.maxDate)
+}
   onTextFieldBlur() {
     const textField = this.nameField.nativeElement as TextField;
     textField.dismissSoftInput();

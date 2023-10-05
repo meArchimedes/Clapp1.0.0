@@ -66,7 +66,14 @@
       text="Please enter a valid E-Mail"
     ></Label>
     <Label text="Date Of Birth"></Label>
-    <date-picker></date-picker>
+    <DatePicker
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+      [(ngModel)]="dob"
+      year="2000"
+      month="1"
+      day="1"
+    ></DatePicker>
     <!-- <GridLayout columns="auto, auto">
       <Label class="form-label" text="Age"></Label>
       <TextField
