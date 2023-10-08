@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "723528884889",
+    "project_id": "clapp-368121",
+    "storage_bucket": "clapp-368121.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723528884889:android:071417f18190bd839c4e08",
+        "android_client_info": {
+          "package_name": "com.android.cleanApp2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723528884889-u2i70tqsokk1friel6rpipgkagp6afaq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKqx31NA1KW47lRyivSTh46ZElzjh2W9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "723528884889-u2i70tqsokk1friel6rpipgkagp6afaq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "723528884889-ipvi2bfunvmeg48j2kciodud2h9nqvg7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.clapp.clappid"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723528884889:android:123ae043d498f8869c4e08",
+        "android_client_info": {
+          "package_name": "com.clapp.clappid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723528884889-u2i70tqsokk1friel6rpipgkagp6afaq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKqx31NA1KW47lRyivSTh46ZElzjh2W9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "723528884889-u2i70tqsokk1friel6rpipgkagp6afaq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "723528884889-ipvi2bfunvmeg48j2kciodud2h9nqvg7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.clapp.clappid"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

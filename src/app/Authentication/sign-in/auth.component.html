@@ -2,11 +2,18 @@
 <quote></quote
 ><StackLayout>
   <StackLayout id="stk1" backgroundImage="~/Images/broom.jpg">
-    <TextField hint="Email" required="true" [(ngModel)]="email"></TextField>
+    <TextField
+      hint="Email"
+      autocapitalizationType="none"
+      required="true"
+      [(ngModel)]="email"
+    ></TextField>
     <TextField
       hint="Password"
       secure="true"
       required="true"
+      maxlength="15"
+      minlength="8"
       [(ngModel)]="password"
       size="60"
     ></TextField>
@@ -51,7 +58,7 @@
       ></Button>
     </StackLayout>
     <Button
-    class="siGgl"
+      class="siGgl"
       text="Sign in with Google"
       (tap)="loginWithGoogle()"
     ></Button>

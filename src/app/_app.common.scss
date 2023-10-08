@@ -1,6 +1,6 @@
 // @import '@nativescript/theme/css/core.css';
 // @import "~@nativescript/theme/core";
-@import "./../../node_modules/nativescript-theme-core/scss/light";
+// @import "./../../node_modules/nativescript-theme-core/scss/light";
 @import "./theme/colors";
 @import "~@nativescript/theme/blue";
 $btn-color: $primary;
@@ -61,7 +61,9 @@ StackLayout {
     }
   }
 }
-
+.warnLabel{
+  color: red;
+}
 .success-btn {
   background: $success;
   border-color: $success;

@@ -4,7 +4,7 @@ import { NativeScriptFormsModule } from "@nativescript/angular/lib/forms";
 import { NativeScriptRouterModule } from "@nativescript/angular";
 import { CleanerSignUpComponent } from "./cleaner-su.component";
 import { FormsModule } from "@angular/forms";
-import {HandleFile} from 'nativescript-handle-file';
+//import {HandleFile} from 'nativescript-handle-file';
 // import { SharedModule} from '~/app/shared/shared.module'
 
 @NgModule({

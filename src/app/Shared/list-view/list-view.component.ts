@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { ItemEventData, ObservableArray, TextField } from '@nativescript/core';
 import { GooglePlacesAutocomplete } from "nativescript-google-places-autocomplete";
 
@@ -9,6 +9,7 @@ import { GooglePlacesAutocomplete } from "nativescript-google-places-autocomplet
   moduleId: module.id,
 })
 export class ListViewComponent implements OnInit {
+  @Input() address: string;
   isListViewVisible: boolean = false;
   autocompleteResults: ObservableArray<string> = new ObservableArray<string>();
   displayListView = true;
@@ -39,7 +40,6 @@ export class ListViewComponent implements OnInit {
     this.displayListView = false;
     const selectedAddress = this.placesArray.getItem(args.index);
     this.isListViewVisible = false;
-    this.address = selectedAddress;
   }
   ngOnInit(): void {
 

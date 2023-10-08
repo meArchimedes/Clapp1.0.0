@@ -1,25 +1,42 @@
-import { Component, OnInit } from "@angular/core";
-import { RouterExtensions } from "@nativescript/angular";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import {
+  ModalDialogOptions,
+  ModalDialogService,
+  RouterExtensions,
+} from "@nativescript/angular";
+import { Router } from "@angular/router";
+import {
+  Validators,
+  EmailValidator,
+  FormControl,
+  FormGroup,
+  FormsModule,
+} from "@angular/forms";
 import { File, knownFolders, path } from "@nativescript/core/file-system";
-import { NativeScriptFormsModule } from "@nativescript/angular";
-import { registerElement } from "@nativescript/angular";
-import { ListViewComponent } from "../../Shared/list-view/list-view.component"
+// import { ListViewComponent } from "../../Shared/list-view/list-view.component";
 import {
   EventData,
   Label,
   ListPicker,
-  ObservableArray,
   Page,
   TextField,
   fromObject,
+  Http,
+  ItemEventData,
+  ListView,
+  DatePicker,
 } from "@nativescript/core";
-import { HttpClient } from "@angular/common/http";
-import { Http, Observable } from "@nativescript/core";
+// import { HttpClient } from "@angular/common/http";
 import { openFile } from "@nativescript/core/utils";
 import * as FilePicker from "@prabudevarrajan/filepicker";
-import { GooglePlacesAutocomplete } from "nativescript-google-places-autocomplete";
-import { ItemEventData, ListView } from "tns-core-modules/ui/list-view";
-
+import { GooglePlacesAutocomplete } from "n7-google-places-autocomplete";
+import { ObservableArray } from "@nativescript/core/data/observable-array";
+import { NgModule, ViewContainerRef } from "@angular/core";
+import { HttpHeaders } from "@angular/common/http";
+import { Cleaner } from "../../services/cleaner.model";
+import { User } from "../../services/user.model";
+import { UserService } from "../../services/user.service";
+import { Address } from "~/app/services/address.model";
 @Component({
   selector: "cleaner-su",
   templateUrl: "cleaner-su.component.html",
@@ -28,45 +45,87 @@ import { ItemEventData, ListView } from "tns-core-modules/ui/list-view";
 })
 export class CleanerSignUpComponent implements OnInit {
   placesArray: ObservableArray<GooglePlacesAutocomplete>;
-  placesAutocomplete: GooglePlacesAutocomplete;
+  placesAutocomplete: any;
   isListViewVisible: boolean = false;
-  displayListView = true;
-  autocompleteResults: ObservableArray<string> = new ObservableArray<string>();
+  isEmailControlValid: boolean = true;
+  passwordsMatch: boolean = true;
+  isPasswordValid: boolean = false;
+  displayListView = false;
+  autocompleteResults: ObservableArray<GooglePlacesAutocomplete>;
   isSignUpEnabled: boolean = false;
   name: string = "";
+  age: any;
+  dob: any;
   id: string = "";
-  workPermitFile: any = null;
+  workPermitFile: any;
   proofOfIdFile: any;
+  photoFile: any;
   address: any;
-  gender: string = "";
+  gender: string;
   email: string = "";
   password: string = "";
   confirmedPassword: string = "";
   genderOptions: Array<string> = ["Female", "Male", "Rather not say"];
-  selectedOption: string;
+  url: string = "https://clapp-36.firebaseio.com/";
   selectedFile: File | null;
+  http: any;
+  currentDate = new Date();
+  minDateYear = this.currentDate.getFullYear() - 99;
+  minDate = new Date(
+    this.minDateYear,
+    this.currentDate.getMonth(),
+    this.currentDate.getDate()
+  );
+   maxDateYear = this.currentDate.getFullYear() - 18;
+   maxDate = new Date(
+     this.maxDateYear,
+     this.currentDate.getMonth(),
+     this.currentDate.getDate()
+   );
+  @ViewChild("nameField", { static: false }) nameField: ElementRef<TextField>;
 
-  // onFileSelected(files: FileList): void {
-  //   this.selectedFile = files.item(0);
-  // }
-
-  constructor(private router: RouterExtensions) {}
+  constructor(
+    private router: RouterExtensions,
+    private modalService: ModalDialogService,
+    private vcRef: ViewContainerRef,
+    private userService: UserService
+  ) {}
   ngOnInit() {
-    this.onSignUpEnabled();
     this.placesAutocomplete = new GooglePlacesAutocomplete(
       "AIzaSyArDTr6RHhG1z3AZxR8uQCKem7eXbXn-ow"
     );
   }
 
   signUp() {
-    // Handle the sign-up logic here
-    // You can access the form values stored in the component properties (e.g., this.name, this.email)
+    // const formData = new FormData();
+    // formData.append("workPermitFile", this.workPermitFile);
+    // formData.append("proofOfIdFile", this.proofOfIdFile);
+    // formData.append("photoFile", this.photoFile);
 
-    // Upload work permit file and proof of ID file
-    // You can use the workPermitFile and proofOfIdFile properties to upload the corresponding files
-    //
-    // Redirect to the desired page after successful sign-up
+    const newCleaner: Cleaner = {
+      hourlyRate: 50,
+      perfectionism: 0,
+      efficiency: 0,
+      dob: this.dob,
+      gender: this.gender,
+      proofOfIdFile: this.proofOfIdFile,
+      workPermitFile: this.workPermitFile,
+      photoImg: this.photoFile,
+      email: this.email,
+      password: this.password,
+      address: this.address,
+    };
+    this.userService.createNewCleaner(newCleaner);
     this.router.navigate(["/calendars/calendar/calendar-tabs"]);
+  }
+
+  onDatePickerLoaded(args) {
+    const datePicker = args.object as DatePicker;
+    console.log("the min date:" +this.minDate, " :"+this.maxDate)
+}
+  onTextFieldBlur() {
+    const textField = this.nameField.nativeElement as TextField;
+    textField.dismissSoftInput();
   }
   onAddressInputChange(args) {
     let textField = <TextField>args.object;
@@ -86,67 +145,88 @@ export class CleanerSignUpComponent implements OnInit {
         throw error;
       }
     );
+    this.onSignUpEnabled();
   }
+
   onItemTap(args: ItemEventData) {
     this.displayListView = false;
     const selectedAddress = this.placesArray.getItem(args.index);
     this.isListViewVisible = false;
     this.address = selectedAddress;
   }
-  // onNavigatingTo(args: EventData) {
-  //   const page = <Page>args.object;
-  //   page.bindingContext = this.placesArray;
-  // }
-  // onListViewLoaded(args: EventData) {
-  //   const listView = <ListView>(<unknown>args.object);
-  // }
 
-  uploadFile(): void {
-    // Perform the file upload logic here using this.selectedFile
-    if (this.selectedFile) {
-      console.log("Uploading file:", this.selectedFile.name);
-      // Additional logic...
-    }
-  }
   onSignUpEnabled() {
     // Check if all required fields are filled
+    const isNameValid = this.name !== null && this.name.trim() !== "";
+    const isAddressValid = this.address !== null && this.address.trim() !== "";
     if (
-      this.name !== "" &&
-      this.email !== "" &&
-      this.workPermitFile !== "" &&
-      this.proofOfIdFile !== "" &&
-      this.address !== "" &&
-      this.gender !== "" &&
-      this.password !== ""
+      isNameValid &&
+      isAddressValid &&
+      this.password !== null &&
+      this.confirmedPassword !== null &&
+      this.isEmailControlValid &&
+      this.isPasswordValid &&
+      this.passwordsMatch &&
+      this.workPermitFile != null &&
+      this.proofOfIdFile != null &&
+      this.photoFile != null
     ) {
       this.isSignUpEnabled = true;
     } else {
       this.isSignUpEnabled = false;
     }
   }
-  onPredictionSelected(selectedIndex: number) {
-    const selectedPrediction = this.autocompleteResults[selectedIndex];
-    console.log("Selected Prediction:", selectedPrediction);
-    this.address = selectedPrediction.description;
+  getPassword(event) {
+    this.password = event;
+    console.log(this.password);
+    if (this.password == this.confirmedPassword) this.passwordsMatch = true;
+    else this.passwordsMatch = false;
   }
-
-  onSelectFile() {
+  getConfirmedPassword(event) {
+    this.confirmedPassword = event;
+    if (this.password !== this.confirmedPassword) this.passwordsMatch = false;
+    else this.passwordsMatch = true;
+  }
+  getPassMatch(event) {
+    console.log(event);
+    this.passwordsMatch = event;
+  }
+  getPassValid(event) {
+    this.isPasswordValid = event;
+  }
+  isEmailValid() {
+    if (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(this.email)) {
+      this.isEmailControlValid = true;
+    } else this.isEmailControlValid = false;
+    this.onSignUpEnabled();
+  }
+  onSelectFile(fileType: string) {
     let context = FilePicker.create({
       mode: "single",
-      extensions: ["pdf", "jpg", "doc", "docx"],
+      extensions: ["pdf", "jpg", "png", "doc", "docx"],
     });
     context
       .authorize()
-      .then(function () {
+      .then(() => {
         return context.present();
       })
-      .then(function (selection) {
-        selection.forEach(function (selected) {
-          // process the selected file
+      .then((selection) => {
+        selection.forEach((selected) => {
+          switch (fileType) {
+            case "workPermitFile":
+              this.workPermitFile = selected;
+              break;
+            case "proofOfIdFile":
+              this.proofOfIdFile = selected;
+              break;
+            case "photoFile":
+              this.photoFile = selected;
+              break;
+          }
         });
       })
-      .catch(function (e) {
-        // process error
+      .catch((e) => {
+        console.log(e);
       });
   }
 }
